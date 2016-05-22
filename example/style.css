@@ -1,0 +1,81 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:500,400,300,200);
+* {
+    padding: 0;
+    margin: 0;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+}
+.wrap-a {
+    position: absolute;
+    width: 50%;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: #9ed2e8;
+    overflow: hidden;
+}
+.wrap-b {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: #ece272;
+    overflow: hidden;
+}
+@media (max-width: 700px) {
+   .wrap-a {
+      width: 100%;
+   }
+   .wrap-b {
+      top: 100%;
+      width: 100%;
+   }
+}
+#clock {
+    width: 77px;
+    position: absolute;
+    left: 50%;
+    margin-left: -37px;
+    top: 30%;
+}
+#desk {
+    position: absolute;
+    left: 50%;
+    margin-left: -150px;
+    top: 50%;
+}
+#coffee {
+    position: absolute;
+    right: -15%;
+    width: 591px;
+    top: 22%;
+}
+#frame {
+    position: absolute;
+    left: 50%;
+    margin-left: -15%;
+    top: 50%;
+    margin-top: -25%;
+    width: 30%;
+    height: 25%;
+    border: 10px solid #000;
+}
+#frame p {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: 500;
+}
+#plant {
+    position: absolute;
+    left: 50%;
+    margin-left: -75px;
+    top: 35%;
+    width: 160px;
+}

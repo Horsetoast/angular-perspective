@@ -1,0 +1,25 @@
+{
+  "name": "angular-depth",
+  "description": "",
+  "main": "src/ngDepth.directive.js",
+  "authors": [
+    "Matus Peciar"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "angular",
+    "depth",
+    "perspective",
+    "mouseover",
+    "3d",
+    "effect"
+  ],
+  "homepage": "http://www.ngdepth.matuspeciar.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

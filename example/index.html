@@ -1,0 +1,38 @@
+<html ng-app="ngApp">
+
+<head>
+    <title>ngDepth</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+
+<body>
+    <div ng-controller="ExampleA" class="wrap-a">
+        <img id="clock" ng-src="./images/clock.png" depth-x="0.2" ng-depth>
+        <img id="desk" ng-src="./images/desk.png" depth-x="0.5" ng-depth>
+        <img id="coffee" ng-src="./images/coffee_big.png" depth-x="10" depth-y="1" ng-depth>
+    </div>
+    <div ng-controller="ExampleB" class="wrap-b">
+        <div id="frame" rotate-z="0.5" ng-depth>
+            <p>Hi.</p>
+        </div>
+        <img id="plant" ng-src="./images/plant.png">
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="../src/ngDepth.directive.min.js"></script>
+    <script>
+        var app = angular.module('ngApp', ['ngDepth', function(ngDepth) {}]);
+
+        app.config(function(ngDepthConfigProvider) {
+            ngDepthConfigProvider.config = {
+                'depthFactor': 20,
+                'focalPoint': 'parent'
+            };
+        });
+
+        app.controller('ExampleA', ['$scope', function($scope) {}]);
+        app.controller('ExampleB', ['$scope', function($scope) {}]);
+    </script>
+</body>
+
+</html>
