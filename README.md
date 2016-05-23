@@ -4,7 +4,7 @@ A simple angular directive that allows to create an impression of depth on eleme
 See the [demo](http://www.ngdepth.matuspeciar.com).
 ## Installation
 
-Install via __Download__,
+Install via __Download__ or
 
 __Bower__
 ```bash
