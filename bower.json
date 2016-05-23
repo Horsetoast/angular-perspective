@@ -1,7 +1,7 @@
 {
   "name": "angular-depth",
   "description": "",
-  "main": "src/ngDepth.directive.js",
+  "main": "src/ngDepth.directive.min.js",
   "authors": [
     "Matus Peciar"
   ],
