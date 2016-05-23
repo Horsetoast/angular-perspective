@@ -1,8 +1,7 @@
-<snippet>
-  <content><![CDATA[
-# ${1:Angular Depth}
+Angular Depth (ngDepth)
+====
 A simple angular directive that allows to create an impression of depth on elements, relative to your mouse position, which is triggered by the mouseover event.
-See the demo.
+See the [demo](http://www.ngdepth.matuspeciar.com).
 ## Installation
 
 Install via __Download__,
@@ -12,23 +11,44 @@ __Bower__
 bower install --save angular-depth.js
 ```
 ## Usage
-Include ngDepth dependency and use as a directive with the following options:
+Include ngDepth.directive.min.js (or the unminified version) in your Angular app.
 
-For a depth effect on both (X and Y) axis with the same value
-```<img src="./images/desk.png" z-depth="1" ng-depth></img>
+To activate the directive, use attribute:
+```bash
+ng-depth
 ```
-## Contributing
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
-## History
-TODO: Write history
-## Credits
-TODO: Write credits
-## License
-TODO: Write license
-]]></content>
-  <tabTrigger>readme</tabTrigger>
-</snippet>
+
+With one or more of the following attributes:
+```bash
+z-depth="value" (both axes, same value)
+x-depth="value" (x axis)
+y-depth="value" (y axis)
+z-rotate="value" (both axes same value)
+```
+value = rational number as a factor of movement, negative value will reverse the direction
+
+### Example usage
+For a depth effect on both axes with different values.
+(It is possible to set only one axis, unspecified axis will remain constant).
+```bash
+<img src="./images/example.png" x-depth="5" y-depth="0.7" ng-depth>
+<h1 z-rotate="1.5" ng-depth>Just try me!</h1>
+```
+
+## Options
+The directive currently supports two config parameters:
+
+| Setting | Description |
+| --- | --- |
+| 'depthFactor' | Global variable that will influence the movement of all ng-depth elements |
+| 'focalPoint' | Defines what should be used to calculate default midpoint. Supports 3 options: *'elements'* = each element has its own midpoint, *'parent'* = parent's midpoint, *'window'* = browser window's midpoint|
+
+To configure the directive, use this provider method:
+```bash
+app.config(['ngDepthConfigProvider', function(ngDepthConfigProvider) {
+    ngDepthConfigProvider.config = {
+        'depthFactor': 20,
+        'focalPoint': 'window'
+    };
+}]);
+```
