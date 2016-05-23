@@ -1,4 +1,4 @@
-<html ng-app="ngApp">
+<html ng-app="ngApp" ng-strict-di>
 
 <head>
     <title>ngDepth</title>
@@ -21,14 +21,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
     <script src="../src/ngDepth.directive.min.js"></script>
     <script>
-        var app = angular.module('ngApp', ['ngDepth', function(ngDepth) {}]);
+        var app = angular.module('ngApp', ['ngDepth']);
 
-        app.config(function(ngDepthConfigProvider) {
+        app.config(['ngDepthConfigProvider', function(ngDepthConfigProvider) {
             ngDepthConfigProvider.config = {
                 'depthFactor': 20,
-                'focalPoint': 'parent'
+                'focalPoint': 'window'
             };
-        });
+        }]);
 
         app.controller('ExampleA', ['$scope', function($scope) {}]);
         app.controller('ExampleB', ['$scope', function($scope) {}]);

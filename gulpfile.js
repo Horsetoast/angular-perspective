@@ -1,43 +1,68 @@
-var gulp   = require('gulp');
-var clean  = require('gulp-rimraf');
-var jshint = require('gulp-jshint');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var ngmin  = require('gulp-ng-annotate');
-var sourcemaps = require('gulp-sourcemaps');
+// --------------------------------------------------------------------
+// Plugins
+// --------------------------------------------------------------------
 
-var sources = [
-  'src/ngDepth.directive.js'
-];
+var gulp        = require('gulp');
+var concat      = require('gulp-concat');
+var plumber     = require('gulp-plumber');
+var uglify      = require('gulp-uglify');
+var webserver   = require('gulp-webserver');
 
-var targets = 'dist/angular-parallax.{js,min.js,min.js.map}';
+// --------------------------------------------------------------------
+// Settings
+// --------------------------------------------------------------------
 
-gulp.task('clean', function() {
-  gulp.src(targets)
-    .pipe(clean());
-});
+var src = 'src/ngDepth.directive.js';
 
-gulp.task('lint', function() {
-  gulp.src(sources)
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'));
-});
+var output = {
+  build: 'src/ngDepth.directive.min.js'
+};
 
-gulp.task('compress', function() {
-  //Development version
-  gulp.src(sources)
-    .pipe(concat('ngDepth.directive.js', { newLine: '\n\n' }))
-    .pipe(ngmin())
-    .pipe(gulp.dest('./'));
+// --------------------------------------------------------------------
+// Error Handler
+// --------------------------------------------------------------------
 
-  //Minified version
-  gulp.src(sources)
-    .pipe(sourcemaps.init())
-      .pipe(concat('ngDepth.directive.min.js', { newLine: '\n\n' }))
-      .pipe(ngmin())
+var onError = function(err) {
+    console.log(err);
+    this.emit('end');
+};
+
+// --------------------------------------------------------------------
+// Task: build
+// --------------------------------------------------------------------
+
+gulp.task('build', function() {
+    return gulp.src(src)
+      .pipe(plumber({
+          errorHandler: onError
+      }))
       .pipe(uglify())
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('./'));
+      .pipe(concat(output.build))
+      .pipe(gulp.dest(''));
 });
 
-gulp.task('default', ['lint', 'clean', 'compress']);
+// --------------------------------------------------------------------
+// Task: serve
+// --------------------------------------------------------------------
+
+gulp.task('serve', ['serve-watch'], function() {
+
+  //watch .scss files
+	gulp.watch(src, ['serve-watch']);
+
+  return gulp.src('sample')
+    .pipe(webserver({
+      livereload: true,
+      open: true
+    }));
+
+});
+
+gulp.task('serve-watch', function(){
+  return gulp.src(src)
+    .pipe(plumber({
+        errorHandler: onError
+    }))
+    .pipe(concat(output.build))
+    .pipe(gulp.dest('sample/app/directives/'));
+});

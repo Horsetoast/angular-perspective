@@ -3,7 +3,7 @@
 
     angular
         .module('ngDepth', [])
-        .provider('ngDepthConfig', function() {
+        .provider('ngDepthConfig', function ngDepthConfig() {
             this.config = {};
             this.$get = function() {
                 return this;
@@ -11,7 +11,8 @@
         })
         .directive('ngDepth', ngDepth);
 
-    /** @ngInject */
+    ngDepth.$inject = ['$window'];
+
     function ngDepth($window) {
         var directive = {
             restrict: 'A',
@@ -22,7 +23,7 @@
                 rotateZ: '='
             },
             link: linkFunc,
-            controller: ngDepthCtrl,
+            controller: ['ngDepthConfig', ngDepthCtrl],
             controllerAs: 'vm'
         };
 
@@ -71,8 +72,8 @@
                 var e = event || window.event;
 
                 var mouse = [];
-                mouse['x'] = e.clientX + (doc && doc.scrollLeft || body && body.scrollLeft || 0) - (doc.clientLeft || 0);
-                mouse['y'] = e.clientY + (doc && doc.scrollTop || body && body.scrollTop || 0) - (doc.clientTop || 0);
+                mouse.x = e.clientX + (doc && doc.scrollLeft || body && body.scrollLeft || 0) - (doc.clientLeft || 0);
+                mouse.y = e.clientY + (doc && doc.scrollTop || body && body.scrollTop || 0) - (doc.clientTop || 0);
                 return mouse;
             }
 
@@ -83,14 +84,14 @@
                 var x, y;
 
                 if (vm.config.focalPoint === 'elements') {
-                    x = elCenterX - mouse['x'];
-                    y = elCenterY - mouse['y'];
+                    x = elCenterX - mouse.x;
+                    y = elCenterY - mouse.y;
                 } else if (vm.config.focalPoint === 'window') {
-                    x = $window.innerHeight / 2 - mouse['x'];
-                    y = $window.innerHeight / 2 - mouse['y'];
+                    x = $window.innerHeight / 2 - mouse.x;
+                    y = $window.innerHeight / 2 - mouse.y;
                 } else if (vm.config.focalPoint === 'parent') {
-                    x = parent.offsetLeft + (angular.element(el[0]).parent()[0].clientWidth / 2) - mouse['x'];
-                    y = parent.offsetTop + (angular.element(el[0]).parent()[0].clientHeight / 2) - mouse['y'];
+                    x = parent.offsetLeft + (angular.element(el[0]).parent()[0].clientWidth / 2) - mouse.x;
+                    y = parent.offsetTop + (angular.element(el[0]).parent()[0].clientHeight / 2) - mouse.y;
                 }
 
                 /* Collect ngDepth args supplied to the element */
@@ -133,8 +134,6 @@
             }
         }
 
-        /** @ngInject */
-        ngDepthCtrl.$inject = ['ngDepthConfig'];
         function ngDepthCtrl(ngDepthConfig) {
             var vm = this;
             vm.config = {
@@ -151,7 +150,6 @@
 
             return vm;
         }
-
     }
 
 })();
