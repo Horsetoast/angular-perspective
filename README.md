@@ -8,7 +8,7 @@ Install via __Download__ or
 
 __Bower__
 ```bash
-bower install --save angular-depth.js
+bower install --save angular-depth
 ```
 ## Usage
 Include ngDepth.directive.min.js (or the unminified version) in your Angular app.
