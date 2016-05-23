@@ -1,6 +1,6 @@
 Angular Depth (ngDepth)
 ====
-A simple angular directive that allows to create an impression of depth on elements, relative to your mouse position, which is triggered by the mouseover event.
+A simple angular directive that lets you create an impression of depth from a midpoint relative to your mouse position.
 See the [demo](http://www.ngdepth.matuspeciar.com).
 ## Installation
 

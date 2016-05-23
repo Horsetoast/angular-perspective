@@ -27,6 +27,25 @@ h1, h2, h3, h4, h5, h6 {
     background: #ece272;
     overflow: hidden;
 }
+.gb-link {
+   position: absolute;
+   left: 25px;
+   top: 25px;
+   display: inline-block;
+   padding: 7px 14px;
+   font-size: 15px;
+   font-weight: 500;
+   color: #000;
+   background: #fff;
+   z-index: 10;
+   text-decoration: none;
+   -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+}
+.gb-link:hover {
+   background: #d7f3ff;
+}
 @media (max-width: 700px) {
    .wrap-a {
       width: 100%;

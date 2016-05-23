@@ -6,6 +6,7 @@
 </head>
 
 <body>
+    <a href="https://github.com/Horsetoast/angular-depth.git" target="_blank" class="gb-link">GitHub</a>
     <div ng-controller="ExampleA" class="wrap-a">
         <img id="clock" ng-src="./images/clock.png" depth-x="0.2" ng-depth>
         <img id="desk" ng-src="./images/desk.png" depth-x="0.5" ng-depth>
@@ -19,14 +20,14 @@
 
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-    <script src="../src/ngDepth.directive.min.js"></script>
+    <script src="./ngDepth.directive.min.js"></script>
     <script>
         var app = angular.module('ngApp', ['ngDepth']);
 
         app.config(['ngDepthConfigProvider', function(ngDepthConfigProvider) {
             ngDepthConfigProvider.config = {
                 'depthFactor': 20,
-                'focalPoint': 'window'
+                'focalPoint': 'elements'
             };
         }]);
 
