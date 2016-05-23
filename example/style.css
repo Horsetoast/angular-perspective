@@ -46,6 +46,12 @@ h1, h2, h3, h4, h5, h6 {
 .gb-link:hover {
    background: #d7f3ff;
 }
+.fb-like {
+   position: absolute !important;
+   bottom: 25px;
+   right: 25px;
+   z-index: 10;
+}
 @media (max-width: 700px) {
    .wrap-a {
       width: 100%;
