@@ -1,7 +1,7 @@
 {
   "name": "angular-depth",
   "description": "A simple angular directive that lets you create an impression of depth from a midpoint relative to your mouse position.",
-  "main": "src/ngDepth.directive.min.js",
+  "main": "src/ngDepth.directive.js",
   "authors": [
     "Matus Peciar"
   ],

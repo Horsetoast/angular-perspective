@@ -2,7 +2,7 @@
   "name": "angular-depth",
   "version": "1.0.0",
   "description": "",
-  "main": "src/ngDepth.directive.min.js",
+  "main": "src/ngDepth.directive.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
