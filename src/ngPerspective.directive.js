@@ -17,10 +17,10 @@
         var directive = {
             restrict: 'A',
             scope: {
-                xMove: '=',
-                yMove: '=',
-                zMove: '=',
-                zRotate: '='
+                moveX: '=',
+                moveY: '=',
+                moveZ: '=',
+                rotateZ: '='
             },
             link: linkFunc,
             controller: ['ngPerspectiveConfig', ngPerspectiveCtrl],
@@ -30,11 +30,9 @@
         return directive;
 
         function linkFunc(scope, el, attr, vm) {
-
             var elCenterX, elCenterY, elOffset,
                 doc = document.documentElement,
                 body = document.body;
-
             initialize();
             angular.element($window).bind("resize", initialize);
 
@@ -97,11 +95,11 @@
                 /* Collect ngPerspective args supplied to element */
                 var args = {};
 
-                args.xMove = scope.zMove ? (x * scope.zMove) : (x * scope.xMove);
-                args.yMove = scope.zMove ? (y * scope.zMove) : (y * scope.yMove);
+                args.moveX = scope.moveZ ? (x * scope.moveZ) : (x * scope.moveX);
+                args.moveY = scope.moveZ ? (y * scope.moveZ) : (y * scope.moveY);
 
-                args.xRotate = scope.zRotate ? (x * scope.zRotate) : (x * scope.xMove);
-                args.yRotate = scope.zRotate ? (y * scope.zRotate) : (y * scope.yMove);
+                args.xRotate = scope.rotateZ ? (x * scope.rotateZ) : (x * scope.moveX);
+                args.yRotate = scope.rotateZ ? (y * scope.rotateZ) : (y * scope.moveY);
 
                 // Apply global multiplicator to all elements
                 Object.keys(args).map(function(value, index) {
@@ -114,20 +112,20 @@
             function transform(args) {
                 var transformCSS = "";
 
-                if (scope.zRotate) {
+                if (scope.rotateZ) {
                     transformCSS += 'perspective( 600px ) rotateY( ' + -args.xRotate + 'deg ) rotateX( ' + args.yRotate + 'deg )';
                 }
-                if (scope.zMove) {
-                    transformCSS += 'translate(' + args.xMove + 'px, ' + args.yMove + 'px)';
+                if (scope.moveZ) {
+                    transformCSS += 'translate(' + args.moveX + 'px, ' + args.moveY + 'px)';
                 }
-                if (scope.xMove && !scope.yMove && !scope.zMove) {
-                    transformCSS += 'translateX(' + args.xMove + 'px)';
+                if (scope.moveX && !scope.moveY && !scope.moveZ) {
+                    transformCSS += 'translateX(' + args.moveX + 'px)';
                 }
-                if (!scope.xMove && scope.yMove && !scope.zMove) {
-                    transformCSS += 'translateY(' + args.yMove + 'px)';
+                if (!scope.moveX && scope.moveY && !scope.moveZ) {
+                    transformCSS += 'translateY(' + args.moveY + 'px)';
                 }
-                if (scope.xMove && scope.yMove && !scope.zMove) {
-                    transformCSS += 'translate(' + args.xMove + 'px, ' + args.yMove + 'px)';
+                if (scope.moveX && scope.moveY && !scope.moveZ) {
+                    transformCSS += 'translate(' + args.moveX + 'px, ' + args.moveY + 'px)';
                 }
 
                 el.css('transform', transformCSS);
