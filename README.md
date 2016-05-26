@@ -1,7 +1,6 @@
 Angular Perspective (ngPerspective)
-====
 A simple angular directive that lets you create an impression of perspective from a chosen point in relation to your mouse position.
-See the [demo](http://www.ngPerspective.matuspeciar.com).
+See the [demo](http://www.ngdepth.matuspeciar.com).
 ## Installation
 
 Install via __Download__ or
@@ -20,6 +19,7 @@ ng-perspective
 
 With one or more of the following attributes:
 ```bash
+<<<<<<< HEAD
 move-z="value" (both axes, same value)
 move-x="value" (x axis)
 move-y="value" (y axis)
@@ -31,6 +31,7 @@ value = rational number as a factor of movement, negative value will reverse the
 For a perspective effect on both axes with different values.
 (It is possible to set only one axis, unspecified axis will remain constant).
 ```bash
+<<<<<<< HEAD
 <img src="./images/example.png" move-x="5" move-y="0.7" ng-depth>
 <h1 rotate-z="1.5" ng-depth>Just try me!</h1>
 ```
