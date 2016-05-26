@@ -2,28 +2,28 @@
     'use strict';
 
     angular
-        .module('ngDepth', [])
-        .provider('ngDepthConfig', function ngDepthConfig() {
+        .module('ngPerspective', [])
+        .provider('ngPerspectiveConfig', function ngPerspectiveConfig() {
             this.config = {};
             this.$get = function() {
                 return this;
             };
         })
-        .directive('ngDepth', ngDepth);
+        .directive('ngPerspective', ngPerspective);
 
-    ngDepth.$inject = ['$window'];
+    ngPerspective.$inject = ['$window'];
 
-    function ngDepth($window) {
+    function ngPerspective($window) {
         var directive = {
             restrict: 'A',
             scope: {
-                depthX: '=',
-                depthY: '=',
-                depthZ: '=',
-                rotateZ: '='
+                xMove: '=',
+                yMove: '=',
+                zMove: '=',
+                zRotate: '='
             },
             link: linkFunc,
-            controller: ['ngDepthConfig', ngDepthCtrl],
+            controller: ['ngPerspectiveConfig', ngPerspectiveCtrl],
             controllerAs: 'vm'
         };
 
@@ -94,18 +94,18 @@
                     y = parent.offsetTop + (angular.element(el[0]).parent()[0].clientHeight / 2) - mouse.y;
                 }
 
-                /* Collect ngDepth args supplied to the element */
+                /* Collect ngPerspective args supplied to element */
                 var args = {};
 
-                args.depthX = scope.depthZ ? (x * scope.depthZ) : (x * scope.depthX);
-                args.depthY = scope.depthZ ? (y * scope.depthZ) : (y * scope.depthY);
+                args.xMove = scope.zMove ? (x * scope.zMove) : (x * scope.xMove);
+                args.yMove = scope.zMove ? (y * scope.zMove) : (y * scope.yMove);
 
-                args.rotateX = scope.rotateZ ? (x * scope.rotateZ) : (x * scope.depthX);
-                args.rotateY = scope.rotateZ ? (y * scope.rotateZ) : (y * scope.depthY);
+                args.xRotate = scope.zRotate ? (x * scope.zRotate) : (x * scope.xMove);
+                args.yRotate = scope.zRotate ? (y * scope.zRotate) : (y * scope.yMove);
 
                 // Apply global multiplicator to all elements
                 Object.keys(args).map(function(value, index) {
-                    args[value] = args[value] / vm.config.depthFactor;
+                    args[value] = args[value] / vm.config.perspectiveFactor;
                 });
 
                 transform(args);
@@ -114,38 +114,38 @@
             function transform(args) {
                 var transformCSS = "";
 
-                if (scope.rotateZ) {
-                    transformCSS += 'perspective( 600px ) rotateY( ' + -args.rotateX + 'deg ) rotateX( ' + args.rotateY + 'deg )';
+                if (scope.zRotate) {
+                    transformCSS += 'perspective( 600px ) rotateY( ' + -args.xRotate + 'deg ) rotateX( ' + args.yRotate + 'deg )';
                 }
-                if (scope.depthZ) {
-                    transformCSS += 'translate(' + args.depthX + 'px, ' + args.depthY + 'px)';
+                if (scope.zMove) {
+                    transformCSS += 'translate(' + args.xMove + 'px, ' + args.yMove + 'px)';
                 }
-                if (scope.depthX && !scope.depthY && !scope.depthZ) {
-                    transformCSS += 'translateX(' + args.depthX + 'px)';
+                if (scope.xMove && !scope.yMove && !scope.zMove) {
+                    transformCSS += 'translateX(' + args.xMove + 'px)';
                 }
-                if (!scope.depthX && scope.depthY && !scope.depthZ) {
-                    transformCSS += 'translateY(' + args.depthY + 'px)';
+                if (!scope.xMove && scope.yMove && !scope.zMove) {
+                    transformCSS += 'translateY(' + args.yMove + 'px)';
                 }
-                if (scope.depthX && scope.depthY && !scope.depthZ) {
-                    transformCSS += 'translate(' + args.depthX + 'px, ' + args.depthY + 'px)';
+                if (scope.xMove && scope.yMove && !scope.zMove) {
+                    transformCSS += 'translate(' + args.xMove + 'px, ' + args.yMove + 'px)';
                 }
 
                 el.css('transform', transformCSS);
             }
         }
 
-        function ngDepthCtrl(ngDepthConfig) {
+        function ngPerspectiveCtrl(ngPerspectiveConfig) {
             var vm = this;
             vm.config = {
                 'focalPoint': 'parent',
                 /* options: (elements, window, parent) */
-                'depthFactor': 10
+                'perspectiveFactor': 10
                     /* global multiplicator */
             };
 
             // Interpolate config settings
-            Object.keys(ngDepthConfig.config).map(function(value, index) {
-                vm.config[value] = ngDepthConfig.config[value];
+            Object.keys(ngPerspectiveConfig.config).map(function(value, index) {
+                vm.config[value] = ngPerspectiveConfig.config[value];
             });
 
             return vm;

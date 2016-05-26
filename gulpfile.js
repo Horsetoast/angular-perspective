@@ -12,10 +12,10 @@ var webserver   = require('gulp-webserver');
 // Settings
 // --------------------------------------------------------------------
 
-var src = 'src/ngDepth.directive.js';
+var src = 'src/ngPerspective.directive.js';
 
 var output = {
-  build: 'src/ngDepth.directive.min.js'
+  build: 'src/ngPerspective.directive.min.js'
 };
 
 // --------------------------------------------------------------------

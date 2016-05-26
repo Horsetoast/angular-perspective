@@ -1,14 +1,14 @@
 {
-  "name": "angular-depth",
+  "name": "angular-perspective",
   "version": "1.0.0",
   "description": "",
-  "main": "src/ngDepth.directive.js",
+  "main": "src/ngPerspective.directive.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Horsetoast/angular-depth.git"
+    "url": "git+https://github.com/Horsetoast/angular-perspective.git"
   },
   "keywords": [
     "angular",
@@ -21,9 +21,9 @@
   "author": "Matus Peciar",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Horsetoast/angular-depth/issues"
+    "url": "https://github.com/Horsetoast/angular-perspective/issues"
   },
-  "homepage": "https://github.com/Horsetoast/angular-depth#readme",
+  "homepage": "https://github.com/Horsetoast/angular-perspective#readme",
   "devDependencies": {
     "gulp": "~3.9.1",
     "gulp-concat": "^2.6.0",
