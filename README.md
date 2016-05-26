@@ -1,6 +1,8 @@
-Angular Perspective (ngPerspective)
+#Angular Perspective (ngPerspective)
+
 A simple angular directive that lets you create an impression of perspective from a chosen point in relation to your mouse position.
 See the [demo](http://www.ngdepth.matuspeciar.com).
+
 ## Installation
 
 Install via __Download__ or
