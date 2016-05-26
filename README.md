@@ -1,6 +1,6 @@
 Angular Depth (ngDepth)
 ====
-A simple angular directive that lets you create an impression of depth from a midpoint relative to your mouse position.
+A simple angular directive that lets you create an impression of perspective from a chosen point in relation to your mouse position. See the demo.
 See the [demo](http://www.ngdepth.matuspeciar.com).
 ## Installation
 
@@ -20,10 +20,10 @@ ng-depth
 
 With one or more of the following attributes:
 ```bash
-z-depth="value" (both axes, same value)
-x-depth="value" (x axis)
-y-depth="value" (y axis)
-z-rotate="value" (both axes same value)
+depth-z="value" (both axes, same value)
+depth-x="value" (x axis)
+depth-y="value" (y axis)
+rotate-y="value" (both axes same value)
 ```
 value = rational number as a factor of movement, negative value will reverse the direction
 
@@ -31,8 +31,8 @@ value = rational number as a factor of movement, negative value will reverse the
 For a depth effect on both axes with different values.
 (It is possible to set only one axis, unspecified axis will remain constant).
 ```bash
-<img src="./images/example.png" x-depth="5" y-depth="0.7" ng-depth>
-<h1 z-rotate="1.5" ng-depth>Just try me!</h1>
+<img src="./images/example.png" depth-x="5" depth-y="0.7" ng-depth>
+<h1 rotate-z="1.5" ng-depth>Just try me!</h1>
 ```
 
 ## Options
