@@ -28,38 +28,29 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
 }
 .gb-link {
-   position: absolute;
-   left: 25px;
-   top: 25px;
-   display: inline-block;
-   padding: 7px 14px;
-   font-size: 15px;
-   font-weight: 500;
-   color: #000;
-   background: #fff;
-   z-index: 10;
-   text-decoration: none;
-   -webkit-border-radius: 20px;
-   -moz-border-radius: 20px;
-   border-radius: 20px;
+    position: absolute;
+    left: 25px;
+    top: 25px;
+    display: inline-block;
+    padding: 7px 14px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #000;
+    background: #fff;
+    z-index: 10;
+    text-decoration: none;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
 }
 .gb-link:hover {
-   background: #d7f3ff;
+    background: #d7f3ff;
 }
 .fb-like {
-   position: absolute !important;
-   bottom: 25px;
-   right: 25px;
-   z-index: 10;
-}
-@media (max-width: 700px) {
-   .wrap-a {
-      width: 100%;
-   }
-   .wrap-b {
-      top: 100%;
-      width: 100%;
-   }
+    position: absolute !important;
+    bottom: 25px;
+    right: 25px;
+    z-index: 10;
 }
 #clock {
     width: 77px;
@@ -88,7 +79,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: -25%;
     width: 30%;
     height: 25%;
-    border: 10px solid #000;
+    border: 20px solid #000;
 }
 #frame p {
     position: absolute;
@@ -103,4 +94,62 @@ h1, h2, h3, h4, h5, h6 {
     margin-left: -75px;
     top: 35%;
     width: 160px;
+}
+@media only screen and (max-device-width: 480px) {
+    .wrap-a {
+        width: 100%;
+    }
+    .wrap-b {
+        top: 100%;
+        width: 100%;
+    }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+    .wrap-a {
+        width: 100%;
+    }
+    .wrap-b {
+        top: 100%;
+        width: 100%;
+    }
+    #clock {
+        width: 154px;
+        position: absolute;
+        left: 50%;
+        margin-left: -72px;
+        top: 30%;
+    }
+    #desk {
+        display: none;
+    }
+    #coffee {
+        position: absolute;
+        right: -15%;
+        width: 1182px;
+        top: 22%;
+    }
+    #frame {
+        position: absolute;
+        left: 50%;
+        margin-left: -30%;
+        top: 50%;
+        margin-top: -50%;
+        width: 60%;
+        height: 50%;
+        border: 10px solid #000;
+    }
+    #frame p {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        font-size: 50px;
+        font-weight: 500;
+    }
+    #plant {
+        position: absolute;
+        left: 50%;
+        margin-left: -150px;
+        top: 35%;
+        width: 320px;
+    }
 }

@@ -37,6 +37,10 @@
             angular.element($window).bind("resize", initialize);
 
             function initialize() {
+
+               window.addEventListener('deviceorientation', updateElement);
+               // window.addEventListener("devicemotion", handleMotion, true);
+
                 if (vm.config.focalPoint === "parent") {
                     angular.element(angular.element(el[0]).parent()[0]).bind("mousemove", updateElement);
                 } else {
@@ -92,6 +96,11 @@
                     y = parent.offsetTop + (angular.element(el[0]).parent()[0].clientHeight / 2) - mouse.y;
                 }
 
+                if(event.type === 'deviceorientation') {
+                    y = event.beta *10;  // In degree in the range [-180,180]
+                    x = event.gamma *10; // In degree in the range [-90,90]
+                }
+
                 /* Collect ngPerspective args supplied to element */
                 var args = {};
 
@@ -105,6 +114,7 @@
                 Object.keys(args).map(function(value, index) {
                     args[value] = args[value] / vm.config.perspectiveFactor;
                 });
+
 
                 transform(args);
             }
@@ -129,6 +139,10 @@
                 }
 
                 el.css('transform', transformCSS);
+                el.css('-o-transform', transformCSS);
+                el.css('-moz-transform', transformCSS);
+                el.css('-webkit-transform', transformCSS);
+                el.css('-ms-transform', transformCSS);
             }
         }
 
